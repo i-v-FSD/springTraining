@@ -18,4 +18,10 @@ public class TweetService {
         List<Map<String, Object>> allTweetList = tweetDao.findAllTweet();
         return allTweetList;
     }
+
+    // つぶやく新規追加時のSQL実行結果件数を返す
+    public int insertTweet(int userId, String tweetContent) {
+        int resultNum = tweetDao.insertOneTweet(userId, tweetContent);
+        return resultNum;
+    }
 }

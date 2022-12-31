@@ -34,10 +34,8 @@ public class TopController {
         int userId = Integer.parseInt(request.getParameter("user_id"));
         String content = (String) request.getParameter("content");
 
-        // htmlでPostしたデータを確認
-        System.out.println(userId);
-        System.out.println(content);
-
+        int resultNum = tweetService.insertTweet(userId, content);
+        System.out.println(resultNum + "件のTweetを追加");
         // 遷移先画面を設定
         ModelAndView model = new ModelAndView("/top.html");
 
