@@ -28,7 +28,7 @@
             </tr>
             <tr th:each="tweet : ${tweetList}">
                 <td th:text="${tweet.id}"></td>
-                <td th:text="${tweet.user_Id}"></td>
+                <td th:text="${tweet.userId}"></td>
                 <td class="content" th:text="${tweet.content}"></td>
                 <td>
                     <form method="POST" action="/delete">
