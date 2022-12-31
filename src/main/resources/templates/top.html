@@ -24,11 +24,18 @@
                 <td>id</td>
                 <td>user id</td>
                 <td>content</td>
+                <td>削除ボタン</td>
             </tr>
             <tr th:each="tweet : ${tweetList}">
                 <td th:text="${tweet.id}"></td>
                 <td th:text="${tweet.user_Id}"></td>
                 <td class="content" th:text="${tweet.content}"></td>
+                <td>
+                    <form method="POST" action="/delete">
+                        <input type="hidden" name="id" th:value="${tweet.id}">
+                        <input type="submit" value="削除">
+                    </form>
+                </td>
             </tr>
         </table>
     </th:block>

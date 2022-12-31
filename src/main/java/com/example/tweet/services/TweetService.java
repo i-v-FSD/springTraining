@@ -24,4 +24,10 @@ public class TweetService {
         int resultNum = tweetDao.insertOneTweet(userId, tweetContent);
         return resultNum;
     }
+
+    // つぶやく削除時のSQL実行結果件数を返す
+    public int deleteTweet(int id) {
+        int resultNum = tweetDao.deleteOneTweet(id);
+        return resultNum;
+    }
 }

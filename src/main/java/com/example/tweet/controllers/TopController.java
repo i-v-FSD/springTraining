@@ -38,7 +38,17 @@ public class TopController {
         System.out.println(resultNum + "件のTweetを追加");
         // 遷移先画面を設定
         ModelAndView model = new ModelAndView("/top.html");
+        return model;
+    }
 
+    @PostMapping("/delete")
+    public ModelAndView deleteTweet(HttpServletRequest request) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        // 削除ボタン押下されたTweetのIDを利用して削除
+        int resultNum = tweetService.deleteTweet(id);
+        System.out.println(resultNum + "件のTweetを削除");
+        // 遷移先画面を設定
+        ModelAndView model = new ModelAndView("/top.html");
         return model;
     }
 }

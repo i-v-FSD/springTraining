@@ -26,4 +26,12 @@ public class TweetDao {
         int resultNum = cnn.update(sql, userId, tweetContent);
         return resultNum;
     }
+
+    // tweet1件削除
+    public int deleteOneTweet(int id) {
+        String sql = "DELETE FROM tweet WHERE id = ?;";
+        // 実行結果件数を取得
+        int resultNum = cnn.update(sql, id);
+        return resultNum;
+    }
 }
