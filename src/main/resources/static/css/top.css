@@ -1,0 +1,47 @@
+body {
+  margin: 15px;
+}
+
+#container {
+  margin: auto;
+}
+
+label {
+  display: block;
+}
+input {
+  display: block;
+}
+
+.button {
+  margin-top: 10px;
+}
+
+h3 {
+  color: red;
+}
+
+.table-header {
+  background-color: honeydew;
+}
+
+th {
+  font-weight: bold;
+  border-bottom: 1px solid;
+  width: 100px;
+}
+
+.content {
+  width: 300px;
+}
+
+td {
+  border-bottom: 1px solid;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+td.content {
+  width: 300px;
+  text-align: left;
+}
