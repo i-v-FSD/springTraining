@@ -37,8 +37,11 @@ public class TopController {
 
         int resultNum = tweetService.insertTweet(userId, content);
         System.out.println(resultNum + "件のTweetを追加");
+        List<Tweet> tweetContent = tweetService.fetchTweetList();
+
         // 遷移先画面を設定
         ModelAndView model = new ModelAndView("/top.html");
+        model.addObject("tweetList", tweetContent);
         return model;
     }
 
@@ -48,8 +51,11 @@ public class TopController {
         // 削除ボタン押下されたTweetのIDを利用して削除
         int resultNum = tweetService.deleteTweet(id);
         System.out.println(resultNum + "件のTweetを削除");
+        List<Tweet> tweetContent = tweetService.fetchTweetList();
+
         // 遷移先画面を設定
         ModelAndView model = new ModelAndView("/top.html");
+        model.addObject("tweetList", tweetContent);
         return model;
     }
 
@@ -59,6 +65,7 @@ public class TopController {
         int tweetId = Integer.parseInt(request.getParameter("id"));
         // 編集ボタン押下されたTweetのIDを利用して削除
         Tweet editTargetTweet = tweetService.selectTweetById(tweetId);
+
         // 遷移先画面を設定
         model.addObject("tweet", editTargetTweet);
         return model;
@@ -69,9 +76,12 @@ public class TopController {
         int tweetId = Integer.parseInt(request.getParameter("id"));
         String content = (String) request.getParameter("content");
         String updatedMessage = tweetService.updateTweetById(tweetId, content);
+        List<Tweet> tweetContent = tweetService.fetchTweetList();
+
         // 遷移先画面を設定
         ModelAndView model = new ModelAndView("/top.html");
         model.addObject("updatedMessage", updatedMessage);
+        model.addObject("tweetList", tweetContent);
         return model;
     }
 }
