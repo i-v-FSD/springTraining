@@ -57,4 +57,11 @@ public class TweetDao {
         return cnn.queryForObject(sql, tweet, tweetId);
     }
 
+    public int updateTweetById(int tweetId, String content) {
+        String sql = "UPDATE tweet SET content = ? WHERE id = ?";
+        Object[] params = { content, tweetId };
+        // 実行結果件数を取得
+        int resultNum = cnn.update(sql, params);
+        return resultNum;
+    }
 }

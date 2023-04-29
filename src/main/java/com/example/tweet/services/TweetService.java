@@ -35,4 +35,14 @@ public class TweetService {
     public Tweet selectTweetById(int tweetId) {
         return tweetDao.selectTweetById(tweetId);
     }
+
+    public String updateTweetById(int tweetId, String content) {
+        int updateResult = tweetDao.updateTweetById(tweetId, content);
+        // 疑似例外処理
+        if (updateResult > 0) {
+            return "tweetを更新しました。";
+        } else {
+            return "tweetの更新に失敗しました。";
+        }
+    }
 }

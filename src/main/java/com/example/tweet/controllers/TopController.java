@@ -63,4 +63,15 @@ public class TopController {
         model.addObject("tweet", editTargetTweet);
         return model;
     }
+
+    @PostMapping("/edit")
+    public ModelAndView updateProcess(HttpServletRequest request) {
+        int tweetId = Integer.parseInt(request.getParameter("id"));
+        String content = (String) request.getParameter("content");
+        String updatedMessage = tweetService.updateTweetById(tweetId, content);
+        // 遷移先画面を設定
+        ModelAndView model = new ModelAndView("/top.html");
+        model.addObject("updatedMessage", updatedMessage);
+        return model;
+    }
 }
