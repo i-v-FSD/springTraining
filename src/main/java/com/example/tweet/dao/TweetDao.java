@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.example.tweet.entities.Tweet;
@@ -47,4 +49,12 @@ public class TweetDao {
         int resultNum = cnn.update(sql, id);
         return resultNum;
     }
+
+    public Tweet selectTweetById(int tweetId) {
+        String sql = "SELECT id, content FROM tweet WHERE id = ?";
+        // 取得データをTweet型にマッピング
+        RowMapper<Tweet> tweet = new BeanPropertyRowMapper<Tweet>(Tweet.class);
+        return cnn.queryForObject(sql, tweet, tweetId);
+    }
+
 }

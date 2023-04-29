@@ -30,4 +30,9 @@ public class TweetService {
         int resultNum = tweetDao.deleteOneTweet(id);
         return resultNum;
     }
+
+    // つぶやく編集対象となるTweet1件の情報を返す
+    public Tweet selectTweetById(int tweetId) {
+        return tweetDao.selectTweetById(tweetId);
+    }
 }

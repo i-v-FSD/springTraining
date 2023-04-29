@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -49,6 +50,17 @@ public class TopController {
         System.out.println(resultNum + "件のTweetを削除");
         // 遷移先画面を設定
         ModelAndView model = new ModelAndView("/top.html");
+        return model;
+    }
+
+    @GetMapping("/edit{id}")
+    public ModelAndView editProcess(HttpServletRequest request) {
+        ModelAndView model = new ModelAndView("/edit.html");
+        int tweetId = Integer.parseInt(request.getParameter("id"));
+        // 編集ボタン押下されたTweetのIDを利用して削除
+        Tweet editTargetTweet = tweetService.selectTweetById(tweetId);
+        // 遷移先画面を設定
+        model.addObject("tweet", editTargetTweet);
         return model;
     }
 }
