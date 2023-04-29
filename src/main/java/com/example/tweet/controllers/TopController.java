@@ -38,9 +38,7 @@ public class TopController {
 
         int resultNum = tweetService.insertTweet(userId, content);
         System.out.println(resultNum + "件のTweetを追加");
-        List<Tweet> tweetContent = tweetService.fetchTweetList();
 
-        redirectAttributes.addFlashAttribute("tweetList", tweetContent);
         return "redirect:/";
     }
 
@@ -50,9 +48,7 @@ public class TopController {
         // 削除ボタン押下されたTweetのIDを利用して削除
         int resultNum = tweetService.deleteTweet(id);
         System.out.println(resultNum + "件のTweetを削除");
-        List<Tweet> tweetContent = tweetService.fetchTweetList();
 
-        redirectAttributes.addFlashAttribute("tweetList", tweetContent);
         return "redirect:/";
     }
 
@@ -72,10 +68,8 @@ public class TopController {
         int tweetId = Integer.parseInt(request.getParameter("id"));
         String content = (String) request.getParameter("content");
         String updatedMessage = tweetService.updateTweetById(tweetId, content);
-        List<Tweet> tweetContent = tweetService.fetchTweetList();
 
         redirectAttributes.addFlashAttribute("message", updatedMessage);
-        redirectAttributes.addFlashAttribute("tweetList", tweetContent);
         return "redirect:/";
     }
 }
