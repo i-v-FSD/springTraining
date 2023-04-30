@@ -20,18 +20,22 @@ public class TweetDao {
     // tweet全件取得
     public List<Tweet> findAllTweet() {
         String sql = "SELECT * FROM tweet;";
-        List<Map<String, Object>> allTweetList = cnn.queryForList(sql);
+        try {
+            List<Map<String, Object>> allTweetList = cnn.queryForList(sql);
 
-        List<Tweet> tweetList = new ArrayList<>();
-        for (Map<String, Object> tweetInfo : allTweetList) {
-            Tweet tweet = new Tweet();
-            tweet.setId((int) tweetInfo.get("id"));
-            tweet.setUserId((int) tweetInfo.get("user_id"));
-            tweet.setContent((String) tweetInfo.get("content"));
-            tweetList.add(tweet);
+            List<Tweet> tweetList = new ArrayList<>();
+            for (Map<String, Object> tweetInfo : allTweetList) {
+                Tweet tweet = new Tweet();
+                tweet.setId((int) tweetInfo.get("id"));
+                tweet.setUserId((int) tweetInfo.get("user_id"));
+                tweet.setContent((String) tweetInfo.get("content"));
+                tweetList.add(tweet);
+            }
+            return tweetList;
+        } catch (Exception ex) {
+            System.out.println("[findAllTweet]occur error");
+            throw ex;
         }
-        return tweetList;
-
     }
 
     // tweet1件追加（つぶやくに相当）

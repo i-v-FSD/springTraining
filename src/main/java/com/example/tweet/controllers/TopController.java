@@ -23,11 +23,18 @@ public class TopController {
     @RequestMapping("/")
     public ModelAndView topTweetPageString() {
         // 遷移先画面を設定
-        ModelAndView model = new ModelAndView("/top.html");
-
-        List<Tweet> tweetContent = tweetService.fetchTweetList();
-        // 画面へ値を渡すため、ModelAndViewに値を詰める
-        model.addObject("tweetList", tweetContent);
+        ModelAndView model = new ModelAndView();
+        try {
+            List<Tweet> tweetContent = tweetService.fetchTweetList();
+            // 画面へ値を渡すため、ModelAndViewに値を詰める
+            model.addObject("tweetList", tweetContent);
+            model.setViewName("/top.html");
+        } catch (Exception ex) {
+            model.addObject("message", "一覧取得時に異常が発生しました。");
+            System.out.println(ex.getCause());
+            System.out.println(ex.getMessage());
+            model.setViewName("/errors/errorPage.html");
+        }
         return model;
     }
 
