@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.tweet.entities.Tweet;
 import com.example.tweet.services.TweetService;
+import com.example.tweet.common.validation.Validate;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -40,11 +41,20 @@ public class TopController {
 
     @PostMapping("/insert")
     public String InsertTweet(HttpServletRequest request, RedirectAttributes redirectAttributes) {
-        int userId = Integer.parseInt(request.getParameter("user_id"));
-        String content = (String) request.getParameter("content");
+        try {
+            Validate validator = new Validate();
+            validator.validateInsertItems(request.getParameter("user_id"), request.getParameter("content"));
 
-        int resultNum = tweetService.insertTweet(userId, content);
-        System.out.println(resultNum + "件のTweetを追加");
+            int userId = Integer.parseInt(request.getParameter("user_id"));
+            String content = request.getParameter("content");
+
+            int resultNum = tweetService.insertTweet(userId, content);
+            System.out.println(resultNum + "件のTweetを追加");
+
+        } catch (Exception ex) {
+            redirectAttributes.addFlashAttribute("message", ex.getMessage());
+            System.out.println(ex.getMessage());
+        }
 
         return "redirect:/";
     }
