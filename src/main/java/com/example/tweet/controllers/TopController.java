@@ -43,10 +43,10 @@ public class TopController {
     public String InsertTweet(HttpServletRequest request, RedirectAttributes redirectAttributes) {
         try {
             Validate validator = new Validate();
-            validator.validateInsertItems(request.getParameter("user_id"), request.getParameter("content"));
+            validator.validateInsertItems(request.getParameter("user_id"), request.getParameter("content").trim());
 
             int userId = Integer.parseInt(request.getParameter("user_id"));
-            String content = request.getParameter("content");
+            String content = request.getParameter("content").trim();
 
             int resultNum = tweetService.insertTweet(userId, content);
             System.out.println(resultNum + "件のTweetを追加");
