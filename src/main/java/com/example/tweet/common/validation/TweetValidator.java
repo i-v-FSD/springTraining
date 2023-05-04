@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 import com.example.tweet.common.errors.ValidationError;
 
-public class Validate {
+public class TweetValidator {
     public void validateInsertItems(String id, String content) throws ValidationError {
         validateId(id);
         validateContent(content);

@@ -12,7 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.tweet.entities.Tweet;
 import com.example.tweet.services.TweetService;
-import com.example.tweet.common.validation.Validate;
+import com.example.tweet.common.validation.TweetValidator;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -42,7 +42,7 @@ public class TopController {
     @PostMapping("/insert")
     public String InsertTweet(HttpServletRequest request, RedirectAttributes redirectAttributes) {
         try {
-            Validate validator = new Validate();
+            TweetValidator validator = new TweetValidator();
             validator.validateInsertItems(request.getParameter("user_id"), request.getParameter("content").trim());
 
             int userId = Integer.parseInt(request.getParameter("user_id"));
