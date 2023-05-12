@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -32,7 +33,7 @@ public class TweetDao {
                 tweetList.add(tweet);
             }
             return tweetList;
-        } catch (Exception ex) {
+        } catch (DataAccessException ex) {
             System.out.println("[findAllTweet]occur error");
             throw ex;
         }

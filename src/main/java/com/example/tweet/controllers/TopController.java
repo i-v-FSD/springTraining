@@ -3,6 +3,7 @@ package com.example.tweet.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,11 +31,17 @@ public class TopController {
             // 画面へ値を渡すため、ModelAndViewに値を詰める
             model.addObject("tweetList", tweetContent);
             model.setViewName("/top.html");
-        } catch (Exception ex) {
+        } catch (DataAccessException ex) {
             model.addObject("message", "一覧取得時に異常が発生しました。");
             System.out.println(ex.getCause());
             System.out.println(ex.getMessage());
             model.setViewName("/errors/errorPage.html");
+        } catch (Exception ex) {
+            model.addObject("message", "システムエラーが発生しました");
+            System.out.println(ex.getCause());
+            System.out.println(ex.getMessage());
+            model.setViewName("/errors/errorPage.html");
+
         }
         return model;
     }
