@@ -16,6 +16,7 @@ import com.example.tweet.services.TweetService;
 import com.example.tweet.common.validation.TweetValidator;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.xml.bind.ValidationException;
 
 @Controller
 public class TopController {
@@ -58,6 +59,9 @@ public class TopController {
             int resultNum = tweetService.insertTweet(userId, content);
             System.out.println(resultNum + "件のTweetを追加");
 
+        } catch (ValidationException ex) {
+            redirectAttributes.addFlashAttribute("validMessage", ex.getMessage());
+            System.out.println(ex.getMessage());
         } catch (Exception ex) {
             redirectAttributes.addFlashAttribute("message", ex.getMessage());
             System.out.println(ex.getMessage());

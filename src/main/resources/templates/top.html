@@ -9,8 +9,8 @@
 <body>
     <div id="container">
         <h2>新規投稿</h2>
-        <th:block th:if="!${#strings.isEmpty(message)}">
-            <h3 th:text="${message}"></h3>
+        <th:block th:if="!${#strings.isEmpty(validMessage)}">
+            <h3 th:text="${validMessage}"></h3>
         </th:block>
         <form method="POST" action="/insert">
             <label>user id</label>
