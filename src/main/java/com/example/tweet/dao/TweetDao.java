@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.example.tweet.common.errors.NoExistRecordError;
 import com.example.tweet.entities.Tweet;
 
 @Repository
@@ -40,11 +41,20 @@ public class TweetDao {
     }
 
     // tweet1件追加（つぶやくに相当）
-    public int insertOneTweet(int userId, String tweetContent) {
-        String sql = "INSERT INTO tweet(user_id, content) VALUES(?, ?);";
-        // 実行結果件数を取得
-        int resultNum = cnn.update(sql, userId, tweetContent);
-        return resultNum;
+    public int insertOneTweet(int userId, String tweetContent) throws NoExistRecordError {
+        try {
+
+            String sql = "INSERT INTO tweet(user_id, content) VALUES(?, ?);";
+            // 実行結果件数を取得
+            int resultNum = cnn.update(sql, userId, tweetContent);
+            if (resultNum == 0) {
+                throw new NoExistRecordError("No tweets to update");
+            }
+            return resultNum;
+        } catch (DataAccessException ex) {
+            System.out.println("[findAllTweet]occur error");
+            throw ex;
+        }
     }
 
     // tweet1件削除

@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.tweet.entities.Tweet;
 import com.example.tweet.services.TweetService;
+import com.example.tweet.common.errors.NoExistRecordError;
 import com.example.tweet.common.validation.TweetValidator;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -61,6 +62,12 @@ public class TopController {
 
         } catch (ValidationException ex) {
             redirectAttributes.addFlashAttribute("validMessage", ex.getMessage());
+            System.out.println(ex.getMessage());
+        } catch (DataAccessException ex) {
+            redirectAttributes.addFlashAttribute("message", ex.getMessage());
+            System.out.println(ex.getMessage());
+        } catch (NoExistRecordError ex) {
+            redirectAttributes.addFlashAttribute("message", ex.getMessage());
             System.out.println(ex.getMessage());
         } catch (Exception ex) {
             redirectAttributes.addFlashAttribute("message", ex.getMessage());

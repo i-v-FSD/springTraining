@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.tweet.common.errors.NoExistRecordError;
 import com.example.tweet.dao.TweetDao;
 import com.example.tweet.entities.Tweet;
 
@@ -20,7 +21,7 @@ public class TweetService {
     }
 
     // つぶやく新規追加時のSQL実行結果件数を返す
-    public int insertTweet(int userId, String tweetContent) {
+    public int insertTweet(int userId, String tweetContent) throws NoExistRecordError {
         int resultNum = tweetDao.insertOneTweet(userId, tweetContent);
         return resultNum;
     }
