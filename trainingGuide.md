@@ -15,7 +15,6 @@ Spring Bootで以下の機能を作成する
 - Tweet表示（R）
 - Tweet編集（U）
 - Tweet削除（D）
-- 余裕があれば、ログイン・ログアウト機能
 
 ## 環境構築
 
@@ -27,7 +26,7 @@ Spring Bootで以下の機能を作成する
 2. Docker-Desktop（GUIもあり不慣れでも扱いやすさがメリット）
    1. Docker-Desktop install
    2. DockerをWSL(Ubuntu)にアタッチ
-3. VSCode
+3. VS Code
    1. 拡張機能を追加
       1. WSL
       2. Gradle for Java
@@ -51,7 +50,7 @@ docker-compose.ymlが存在するディレクトリで実行
 
    ```sh
    # 初回実行時
-   docker-compose up -d build
+   docker-compose up -d --build
    # 2回目以降実行時
    docker-compose start
    ```
@@ -66,6 +65,46 @@ docker-compose.ymlが存在するディレクトリで実行
 1. Springアプリ実行
 1. 画面表示  
 <http://localhost:8080/>
+
+## 実装手順
+
+1. ルーティング実装
+   1. MVC説明
+   2. Controller・View実装
+      1. Controller→遷移先設定、Viewで表示する文字列を設定
+      2. View→Controllerで設定した文字列を画面表示
+   3. Service実装
+      2. Service→文字列を返すメソッドを追加
+      3. Controller→Serviceの戻り値をViewへ渡すように変更
+   4. Dao仮実装
+      1. Dao→文字列を返すメソッドを追加
+      2. Service→Daoの戻り値をControllerへ渡すように変更
+      3. Controller→Serviceの戻り値をViewへ渡すように変更
+2. tweet表示機能
+   1. Dao→データ取得したオブジェクトを返すメソッドに変更
+      1. jdbcTemplateでselect文実行
+   2. Service→Daoの戻り値をControllerへ渡すように変更
+   3. Controller→Serviceの戻り値をViewへ渡すように変更
+   4. View→Controllerで設定したオブジェクトを画面表示
+3. tweet投稿機能
+4. tweet削除機能
+5. tweet編集機能
+   1. 編集用画面追加
+      1. 編集対象のレコード取得
+      2. 編集対象を画面表示
+6. ルーティング変更
+   1. 遷移先指定をリダイレクト
+7. スタイル追加
+   1. 見やすい程度にCSS追加・適用
+8. データ型変換
+   1. Entityクラス追加（Tweet型）
+   2. Select、update処理をEntityのデータ型に変換
+9. 例外処理追加
+10. バリデーション（入力チェック）
+11. リファクタリング
+    1. 重複処理の削除
+    2. 重複値を定数化
+    3. メッセージファイル追加（定数 or Enum）
 
 ## メンター説明
 
