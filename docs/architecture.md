@@ -1,7 +1,7 @@
 # architecture
 
-Java Silver取得と並行、もしくは後続で実施する研修として、Javaに絞ったアプリケーションです。  
-環境構築やコマンドラインへの拒絶反応の緩和を目的に開発環境を作っているため、Spring bootアプリケーションのベストプラクティスには準拠していません
+Java Silver取得と並行、もしくは後続で実施する前提で、Java学習に絞ったアプリケーションです。  
+開発環境は環境構築やコマンドラインへの拒絶反応の緩和を目的に作っているため、Spring bootアプリケーションのベストプラクティスには準拠していません。
 
 ## インフラ・コード管理ツール
 
@@ -51,11 +51,11 @@ MySQLのバージョンを上げても問題ない想定ですが、上手くい
 
 |物理名|data type|NOT NULL|Other specifications|uniq|
 |---|---|---|---|---|
-|**id**|MEDIUMINT|yes|AUTO_INCREMENT|yes|
-|**user_id**|INT|yes|||
-|**content**|VARCHAR(140)|yes|||
-|**create_at**|TIMESTAMP||CURRENT_TIMESTAMP||
-|**updated_at**|TIMESTAMP||CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP||
+|id|MEDIUMINT|yes|AUTO_INCREMENT|yes|
+|user_id|INT|yes|||
+|content|VARCHAR(140)|yes|||
+|create_at|TIMESTAMP||CURRENT_TIMESTAMP||
+|updated_at|TIMESTAMP||CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP||
 
 #### userテーブル
 
@@ -63,8 +63,8 @@ MySQLのバージョンを上げても問題ない想定ですが、上手くい
 
 |物理名|data type|NOT NULL|Other specifications|uniq|
 |---|---|---|---|---|
-|**id**|MEDIUMINT|yes||yes|
-|**name**|VARCHAR(255)|yes|||
-|**password**|VARCHAR(255)|yes|||
-|**create_at**|TIMESTAMP||CURRENT_TIMESTAMP||
-|**updated_at**|TIMESTAMP||CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP||
+|id|MEDIUMINT|yes|AUTO_INCREMENT|yes|
+|name|VARCHAR(255)|yes|||
+|password|VARCHAR(255)|yes|||
+|create_at|TIMESTAMP||CURRENT_TIMESTAMP||
+|updated_at|TIMESTAMP||CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP||
