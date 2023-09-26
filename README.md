@@ -12,7 +12,7 @@ SpringBootはJavaでWebアプリを構築する際に使われるフレームワ
 
 ## 完成イメージ
 
-   <video src="Document%20-%20Google%20Chrome%202023-07-25%2017-51-15-1.mp4" controls title="完成イメージ" width="1200px"></video>
+   <video src="docs/media/AppSample.mp4" controls title="完成イメージ" width="1200px"></video>
 
 ## 目的
 
