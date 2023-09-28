@@ -84,7 +84,7 @@ docker-compose.ymlが存在するディレクトリで実行
 
 1. ルーティング実装　＜フロントとバック間のデータの受け渡し・クラス定義やメソッド戻り値の利用＞
    1. MVC説明
-      - 参考記事 <https://system-kaihatu.com/archives/3204#:~:text=MVC%E3%83%A2%E3%83%87%E3%83%AB%E3%81%A8%E3%81%AF%E3%80%81%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0,%E5%9B%B3%E3%82%8B%E3%81%93%E3%81%A8%E3%81%8C%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%99%E3%80%82>
+      - [MVCとは](https://system-kaihatu.com/archives/3204#:~:text=MVC%E3%83%A2%E3%83%87%E3%83%AB%E3%81%A8%E3%81%AF%E3%80%81%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0,%E5%9B%B3%E3%82%8B%E3%81%93%E3%81%A8%E3%81%8C%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%99%E3%80%82)
    2. Controller・View実装
       - やること：ControllerからViewに文字列を渡し、画面に表示する
       1. Controller
