@@ -46,7 +46,7 @@ SpringBootはJavaでWebアプリを構築する際に使われるフレームワ
    2. WSLへのアタッチ
 4. ソースコード取得
    下記GitHubリポジトリより取得
-   - <https://github.com/createOrganizationPJ/springTraining>
+   - [GitHubリポジトリ](https://github.com/i-v-FSD/springTraining)
 5. 動作確認
    1. MySQLコンテナをビルド
    2. Springプロジェクト立ち上げ
