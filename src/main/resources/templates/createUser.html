@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{./css/top.css}" rel="stylesheet">
+</head>
+
+<body>
+    <div id="container">
+        <h2>新規投稿</h2>
+        <th:block th:if="!${#strings.isEmpty(validMessage)}">
+            <h3 th:text="${validMessage}"></h3>
+        </th:block>
+        <form method="POST" action="/createUser">
+            <label>user id</label>
+            <input type="text" name="user_id" placeholder="1">
+            <label>name</label>
+            <input type="text" name="name" placeholder="name">
+            <label>password</label>
+            <input type="password" name="password" placeholder="password">
+            <input class="formBtn" type="submit" value="追加する">
+        </form>
+        <a href="/">TOPへ戻る</a>
+    </div>
+</body>
+
+</html>

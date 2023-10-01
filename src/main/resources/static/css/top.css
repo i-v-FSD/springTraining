@@ -9,11 +9,12 @@ body {
 label {
   display: block;
 }
+
 input {
   display: block;
 }
 
-.button {
+.formBtn {
   margin-top: 10px;
 }
 

@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.example.tweet.common.errors.NoExistRecordError;
 import com.example.tweet.entities.User;
 
 @Repository
@@ -17,7 +18,6 @@ public class UserDao {
 
     public User findUser(int userId) {
         try {
-
             String sql = "SELECT name FROM user WHERE id = ?;";
             RowMapper<User> user = new BeanPropertyRowMapper<User>(User.class);
             // 実行結果件数を取得
@@ -29,6 +29,21 @@ public class UserDao {
             throw ex;
         } catch (DataAccessException ex) {
             System.out.println("[findUser]occur error");
+            throw ex;
+        }
+    }
+
+    public void createUser(String name, String password) throws NoExistRecordError {
+        try {
+            String sql = "INSERT INTO tweet(name, password) VALUES(?, ?);";
+            // 実行結果件数を取得
+            int resultNum = cnn.update(sql, name, password);
+
+            if (resultNum == 0) {
+                throw new NoExistRecordError("No tweets to update");
+            }
+        } catch (DataAccessException ex) {
+            System.out.println("[createUser]occur error");
             throw ex;
         }
     }

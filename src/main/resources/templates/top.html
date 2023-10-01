@@ -17,7 +17,7 @@
             <input type="text" name="user_id" placeholder="1"><br>
             <label>content</label>
             <input type="text" name="content" placeholder="content">
-            <input type="submit" value="投稿する">
+            <input class="formBtn" type="submit" value="投稿する">
         </form>
         <h2>参照</h2>
         <th:block th:if="${#lists.isEmpty(tweetList)}">
@@ -47,7 +47,7 @@
                 </tr>
             </table>
         </th:block>
-        <a href="/">TOPへ戻る</a>
+        <a href="/createUser">ユーザーを作成する</a>
     </div>
 </body>
 

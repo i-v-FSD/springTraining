@@ -14,6 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.tweet.entities.Tweet;
 import com.example.tweet.services.TweetService;
+import com.example.tweet.services.UserService;
 import com.example.tweet.common.errors.NoExistRecordError;
 import com.example.tweet.common.validation.TweetValidator;
 
@@ -24,6 +25,8 @@ import jakarta.xml.bind.ValidationException;
 public class TopController {
     @Autowired
     private TweetService tweetService;
+    @Autowired
+    private UserService userService;
 
     @RequestMapping("/")
     public ModelAndView topTweetPageString() {
@@ -110,5 +113,20 @@ public class TopController {
 
         redirectAttributes.addFlashAttribute("message", updatedMessage);
         return "redirect:/";
+    }
+
+    @GetMapping("/createUser")
+    public ModelAndView createUserProcess(HttpServletRequest request) {
+        String userName = (request.getParameter("name"));
+        String userPassword = (request.getParameter("password"));
+        ModelAndView model = new ModelAndView("/createUser.html");
+        try {
+            userService.createUser(userName, userPassword);
+            model.addObject("message", "ユーザーが追加されました。");
+        } catch (Exception e) {
+            model.addObject("message", "ユーザー登録に失敗しました。");
+        }
+
+        return model;
     }
 }
