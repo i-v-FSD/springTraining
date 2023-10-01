@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -62,6 +63,9 @@ public class TopController {
 
         } catch (ValidationException ex) {
             redirectAttributes.addFlashAttribute("validMessage", ex.getMessage());
+            System.out.println(ex.getMessage());
+        } catch (IncorrectResultSizeDataAccessException ex) {
+            redirectAttributes.addFlashAttribute("validMessage", "該当ユーザーが存在しません");
             System.out.println(ex.getMessage());
         } catch (DataAccessException ex) {
             redirectAttributes.addFlashAttribute("message", ex.getMessage());

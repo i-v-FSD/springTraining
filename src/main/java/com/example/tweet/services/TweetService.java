@@ -7,12 +7,16 @@ import org.springframework.stereotype.Service;
 
 import com.example.tweet.common.errors.NoExistRecordError;
 import com.example.tweet.dao.TweetDao;
+import com.example.tweet.dao.UserDao;
 import com.example.tweet.entities.Tweet;
 
 @Service
 public class TweetService {
     @Autowired
     private TweetDao tweetDao;
+
+    @Autowired
+    private UserDao userDao;
 
     // 動作確認としてDaoメソッドの戻り値を返すだけ
     public List<Tweet> fetchTweetList() {
@@ -22,6 +26,7 @@ public class TweetService {
 
     // つぶやく新規追加時のSQL実行結果件数を返す
     public int insertTweet(int userId, String tweetContent) throws NoExistRecordError {
+        userDao.findUser(userId);
         int resultNum = tweetDao.insertOneTweet(userId, tweetContent);
         return resultNum;
     }
