@@ -11,7 +11,7 @@ public class TweetValidator {
     }
 
     private void validateId(String userId) throws ValidationException {
-        String regString = "[1-9][0-9]{0,8}";
+        String regString = "[1-9][0-9]{0,7}";
         if (!Pattern.matches(regString, userId)) {
             throw new ValidationException("8桁以下の整数で入力してください");
         }
