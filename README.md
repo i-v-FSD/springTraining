@@ -16,33 +16,6 @@ Spring Bootで以下の機能を作成する
 - Tweet編集（U）
 - Tweet削除（D）
 
-## 環境構築
-
-1. WSL2
-   1. WSL install
-   2. Ubuntu install
-   3. デフォルトユーザーをrootに設定
-   4. JDK install
-2. Docker-Desktop（GUIもあり不慣れでも扱いやすさがメリット）
-   1. Docker-Desktop install
-   2. DockerをWSL(Ubuntu)にアタッチ
-3. VS Code
-   1. 拡張機能を追加
-      1. WSL
-      2. Gradle for Java
-      3. Spring Boot Extension Pack
-      4. Extension Pack for Java
-   2. WSLへのアタッチ
-4. ソースコード取得
-5. 動作確認
-   1. MySQLコンテナをビルド
-   2. Springプロジェクト立ち上げ
-
-### 参考資料
-
-- [WindowsでWSL2+Dockerを使うための環境構築](https://qiita.com/minato-naka/items/84508472c04f628e576e)
-- [Windows上のVS CodeでRemote-WSLを使い。WSL2のUbuntu 20.04へアクセスする。](https://zenn.dev/s_ryuuki/articles/4b9631674adea4)
-
 ### アプリ立ち上げ
 
 1. コンテナ立ち上げ  
