@@ -115,7 +115,7 @@ public class TopController {
         return "redirect:/";
     }
 
-    @GetMapping("/createUser")
+    @RequestMapping("/createUser")
     public ModelAndView createUserProcess(HttpServletRequest request) {
         String userName = (request.getParameter("name"));
         String userPassword = (request.getParameter("password"));
