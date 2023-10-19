@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.tweet.entities.Tweet;
@@ -25,27 +25,22 @@ public class TopController {
     private TweetService tweetService;
 
     @RequestMapping("/")
-    public ModelAndView topTweetPageString() {
-        // 遷移先画面を設定
-        ModelAndView model = new ModelAndView();
+    public String topTweetPageString(Model model) {
         try {
             List<Tweet> tweetContent = tweetService.fetchTweetList();
             // 画面へ値を渡すため、ModelAndViewに値を詰める
-            model.addObject("tweetList", tweetContent);
-            model.setViewName("/top.html");
+            model.addAttribute("tweetList", tweetContent);
+            return "/top.html";
         } catch (DataAccessException ex) {
-            model.addObject("message", "一覧取得時に異常が発生しました。");
+            model.addAttribute("message", "一覧取得時に異常が発生しました。");
             System.out.println(ex.getCause());
             System.out.println(ex.getMessage());
-            model.setViewName("/errors/errorPage.html");
         } catch (Exception ex) {
-            model.addObject("message", "システムエラーが発生しました");
+            model.addAttribute("message", "システムエラーが発生しました");
             System.out.println(ex.getCause());
             System.out.println(ex.getMessage());
-            model.setViewName("/errors/errorPage.html");
-
         }
-        return model;
+        return "/errors/errorPage.html";
     }
 
     @PostMapping("/insert")
@@ -88,14 +83,13 @@ public class TopController {
     }
 
     @GetMapping("/edit{id}")
-    public ModelAndView editProcess(HttpServletRequest request) {
-        ModelAndView model = new ModelAndView("/edit.html");
+    public String editProcess(HttpServletRequest request, Model model) {
         int tweetId = Integer.parseInt(request.getParameter("id"));
         // 編集ボタン押下されたTweetのIDを利用して削除
         Tweet editTargetTweet = tweetService.selectTweetById(tweetId);
 
-        model.addObject("tweet", editTargetTweet);
-        return model;
+        model.addAttribute("tweet", editTargetTweet);
+        return "/edit.html";
     }
 
     @PostMapping("/edit")
