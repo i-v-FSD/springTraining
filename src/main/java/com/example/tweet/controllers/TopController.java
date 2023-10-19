@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.tweet.entities.Tweet;
@@ -21,14 +21,13 @@ public class TopController {
     private TweetService tweetService;
 
     @RequestMapping("/")
-    public ModelAndView showIndex() {
+    public String showIndex(Model model) {
         // 遷移先画面を設定
-        ModelAndView model = new ModelAndView("/top.html");
 
         List<Tweet> tweetContent = tweetService.fetchTweetList();
         // 画面へ値を渡すため、ModelAndViewに値を詰める
-        model.addObject("tweetList", tweetContent);
-        return model;
+        model.addAttribute("tweetList", tweetContent);
+        return "/top.html";
     }
 
     @PostMapping("/insert")
@@ -53,14 +52,13 @@ public class TopController {
     }
 
     @GetMapping("/edit{id}")
-    public ModelAndView showEditPage(HttpServletRequest request) {
-        ModelAndView model = new ModelAndView("/edit.html");
+    public String showEditPage(HttpServletRequest request, Model model) {
         int tweetId = Integer.parseInt(request.getParameter("id"));
         // 編集ボタン押下されたTweetのIDを利用して削除
         Tweet editTargetTweet = tweetService.selectTweetById(tweetId);
 
-        model.addObject("tweet", editTargetTweet);
-        return model;
+        model.addAttribute("tweet", editTargetTweet);
+        return "/edit.html";
     }
 
     @PostMapping("/edit")
