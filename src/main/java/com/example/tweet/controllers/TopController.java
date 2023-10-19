@@ -21,7 +21,7 @@ public class TopController {
     private TweetService tweetService;
 
     @RequestMapping("/")
-    public ModelAndView topTweetPageString() {
+    public ModelAndView showIndex() {
         // 遷移先画面を設定
         ModelAndView model = new ModelAndView("/top.html");
 
@@ -53,7 +53,7 @@ public class TopController {
     }
 
     @GetMapping("/edit{id}")
-    public ModelAndView editProcess(HttpServletRequest request) {
+    public ModelAndView showEditPage(HttpServletRequest request) {
         ModelAndView model = new ModelAndView("/edit.html");
         int tweetId = Integer.parseInt(request.getParameter("id"));
         // 編集ボタン押下されたTweetのIDを利用して削除
@@ -64,7 +64,7 @@ public class TopController {
     }
 
     @PostMapping("/edit")
-    public String updateProcess(HttpServletRequest request, RedirectAttributes redirectAttributes) {
+    public String editTweet(HttpServletRequest request, RedirectAttributes redirectAttributes) {
         int tweetId = Integer.parseInt(request.getParameter("id"));
         String content = (String) request.getParameter("content");
         String updatedMessage = tweetService.updateTweetById(tweetId, content);
