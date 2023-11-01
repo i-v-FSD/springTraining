@@ -30,4 +30,19 @@ public class TweetService {
         int resultNum = tweetDao.deleteOneTweet(id);
         return resultNum;
     }
+
+    // つぶやく編集対象となるTweet1件の情報を返す
+    public Tweet selectTweetById(int tweetId) {
+        return tweetDao.selectTweetById(tweetId);
+    }
+
+    public String updateTweetById(int tweetId, String content) {
+        int updateResult = tweetDao.updateTweetById(tweetId, content);
+        // 疑似例外処理
+        if (updateResult > 0) {
+            return "tweetを更新しました。";
+        } else {
+            return "tweetの更新に失敗しました。";
+        }
+    }
 }
