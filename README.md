@@ -27,36 +27,6 @@ SpringBootはJavaでWebアプリを構築する際に使われるフレームワ
 - バリデーション
 - 例外処理
 
-## 環境構築
-
-1. WSL2
-   1. WSL install
-   2. Ubuntu install
-   3. デフォルトユーザーをrootに設定
-   4. JDK install
-2. Docker-Desktop
-   1. Docker-Desktop install
-   2. DockerをWSL(Ubuntu)にアタッチ
-3. VS Code
-   1. 拡張機能を追加
-      1. WSL
-      2. Gradle for Java
-      3. Spring Boot Extension Pack
-      4. Extension Pack for Java
-   2. WSLへのアタッチ
-4. ソースコード取得
-   下記GitHubリポジトリより取得
-   - [GitHubリポジトリ](https://github.com/i-v-FSD/springTraining)
-5. 動作確認
-   1. MySQLコンテナをビルド
-   2. Springプロジェクト立ち上げ
-
-### 参考資料
-
-- [VS CodeでSpringBoot立ち上げ](https://www.i-vinci.co.jp/techblog/1074)
-- [WindowsでWSL2+Dockerを使うための環境構築](https://qiita.com/minato-naka/items/84508472c04f628e576e)
-- [Windows上のVS CodeでRemote-WSLを使い。WSL2のUbuntu 20.04へアクセスする。](https://zenn.dev/s_ryuuki/articles/4b9631674adea4)
-
 ### アプリ立ち上げ
 
 1. コンテナ立ち上げ  
