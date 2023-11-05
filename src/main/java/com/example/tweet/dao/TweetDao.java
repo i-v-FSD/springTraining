@@ -17,13 +17,13 @@ import com.example.tweet.entities.Tweet;
 @Repository
 public class TweetDao {
     @Autowired
-    private JdbcTemplate cnn;
+    private JdbcTemplate jdbc;
 
     // tweet全件取得
     public List<Tweet> findAllTweet() {
         String sql = "SELECT * FROM tweet;";
         try {
-            List<Map<String, Object>> allTweetList = cnn.queryForList(sql);
+            List<Map<String, Object>> allTweetList = jdbc.queryForList(sql);
 
             List<Tweet> tweetList = new ArrayList<>();
             for (Map<String, Object> tweetInfo : allTweetList) {
@@ -46,7 +46,7 @@ public class TweetDao {
 
             String sql = "INSERT INTO tweet(user_id, content) VALUES(?, ?);";
             // 実行結果件数を取得
-            int resultNum = cnn.update(sql, userId, tweetContent);
+            int resultNum = jdbc.update(sql, userId, tweetContent);
             if (resultNum == 0) {
                 throw new NoExistRecordError("No tweets to update");
             }
@@ -61,7 +61,7 @@ public class TweetDao {
     public int deleteOneTweet(int id) {
         String sql = "DELETE FROM tweet WHERE id = ?;";
         // 実行結果件数を取得
-        int resultNum = cnn.update(sql, id);
+        int resultNum = jdbc.update(sql, id);
         return resultNum;
     }
 
@@ -69,14 +69,14 @@ public class TweetDao {
         String sql = "SELECT id, content FROM tweet WHERE id = ?";
         // 取得データをTweet型にマッピング
         RowMapper<Tweet> tweet = new BeanPropertyRowMapper<Tweet>(Tweet.class);
-        return cnn.queryForObject(sql, tweet, tweetId);
+        return jdbc.queryForObject(sql, tweet, tweetId);
     }
 
     public int updateTweetById(int tweetId, String content) {
         String sql = "UPDATE tweet SET content = ? WHERE id = ?";
         Object[] params = { content, tweetId };
         // 実行結果件数を取得
-        int resultNum = cnn.update(sql, params);
+        int resultNum = jdbc.update(sql, params);
         return resultNum;
     }
 }

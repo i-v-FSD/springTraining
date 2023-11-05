@@ -82,7 +82,7 @@ public class TopController {
     }
 
     @GetMapping("/edit{id}")
-    public String editProcess(HttpServletRequest request, Model model) {
+    public String showEditPage(HttpServletRequest request, Model model) {
         int tweetId = Integer.parseInt(request.getParameter("id"));
         // 編集ボタン押下されたTweetのIDを利用して削除
         Tweet editTargetTweet = tweetService.selectTweetById(tweetId);
@@ -92,7 +92,7 @@ public class TopController {
     }
 
     @PostMapping("/edit")
-    public String updateProcess(HttpServletRequest request, RedirectAttributes redirectAttributes) {
+    public String editTweet(HttpServletRequest request, RedirectAttributes redirectAttributes) {
         int tweetId = Integer.parseInt(request.getParameter("id"));
         String content = (String) request.getParameter("content");
         String updatedMessage = tweetService.updateTweetById(tweetId, content);
