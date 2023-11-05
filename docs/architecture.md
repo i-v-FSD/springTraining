@@ -12,7 +12,7 @@ Java Silver取得と並行、もしくは後続で実施する前提で、Java�
 
 ## サーバーサイド
 
-フレームワークとして[Spring boot](https://spring.io/projects/spring-boot)を利用します。
+Javaとそのフレームワークである[Spring boot](https://spring.io/projects/spring-boot)を利用します。
 ただし、今回の学習目的に併せて、フレームワーク固有の機能はできるだけ使わず、ピュアなJavaに近しい形で実装を進めます。
 
 DBとの接続情報は設定ファイルに記載しています。
