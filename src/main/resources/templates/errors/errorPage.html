@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error Page</title>
+</head>
+
+<body>
+    <h1>Error Page</h1>
+    <th:block th:if="!${#strings.isEmpty(message)}">
+        <h3 th:text="${message}"></h3>
+    </th:block>
+    <a href="/">TOPへ戻る</a>
+</body>
+
+</html>
