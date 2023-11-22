@@ -1,19 +1,19 @@
 INSERT INTO
-    `user` (id, name, password)
+    `user` (id, name, email, password)
 VALUES
-    ("1", 'hoge@fuga.com', 'pass123');
+    ("1", '山田','hoge@fuga.com', 'pass123');
 
 INSERT INTO
-    `user` (id, name, password)
+    `user` (id, name, email, password)
 VALUES
-    ("2", 'fuga@fuga.com', 'pass123');
+    ("2", '佐藤','fuga@fuga.com', 'pass123');
 
 INSERT INTO
-    `user` (id, name, password)
+    `user` (id, name, email, password)
 VALUES
-    ("3", 'piyo@fuga.com', 'pass123');
+    ("3", '合田','piyo@fuga.com', 'pass123');
 
 INSERT INTO
-    `tweet` (id, user_id, content)
+    `user` (id, name, email, password)
 VALUES
-    ("1", "4", 'Hello Tweet');
+    ("4", '鈴木',"suzuki@fuga.com", 'Hello Tweet');

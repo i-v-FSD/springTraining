@@ -47,8 +47,6 @@ MySQLのバージョンを上げても問題ない想定ですが、上手くい
 
 #### tweetテーブル
 
-本開発のメインで使用します。
-
 |物理名|data type|NOT NULL|Other specifications|uniq|
 |---|---|---|---|---|
 |id|MEDIUMINT|yes|AUTO_INCREMENT|yes|
@@ -59,12 +57,11 @@ MySQLのバージョンを上げても問題ない想定ですが、上手くい
 
 #### userテーブル
 
-本開発では使用しません。ユーザー認証機能を実装する可能性を見越して追加しています。
-
 |物理名|data type|NOT NULL|Other specifications|uniq|
 |---|---|---|---|---|
 |id|MEDIUMINT|yes|AUTO_INCREMENT|yes|
 |name|VARCHAR(255)|yes|||
-|password|VARCHAR(255)|yes|||
+|email|VARCHAR(255)|yes||yes|
+|password|VARCHAR(300)|yes|||
 |create_at|TIMESTAMP||CURRENT_TIMESTAMP||
 |updated_at|TIMESTAMP||CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP||
