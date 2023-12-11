@@ -52,7 +52,7 @@ MySQLのバージョンを上げても問題ない想定ですが、上手くい
 |id|MEDIUMINT|yes|AUTO_INCREMENT|yes|
 |user_id|INT|yes|||
 |content|VARCHAR(140)|yes|||
-|create_at|TIMESTAMP||CURRENT_TIMESTAMP||
+|created_at|TIMESTAMP||CURRENT_TIMESTAMP||
 |updated_at|TIMESTAMP||CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP||
 
 #### userテーブル
@@ -63,5 +63,5 @@ MySQLのバージョンを上げても問題ない想定ですが、上手くい
 |name|VARCHAR(255)|yes|||
 |email|VARCHAR(255)|yes||yes|
 |password|VARCHAR(300)|yes|||
-|create_at|TIMESTAMP||CURRENT_TIMESTAMP||
+|created_at|TIMESTAMP||CURRENT_TIMESTAMP||
 |updated_at|TIMESTAMP||CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP||
