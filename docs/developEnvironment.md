@@ -23,11 +23,11 @@ WSL、Docker、Visual Studio Codeのインストーラーは自社指定のも�
    3. Windowsの設定＞コントロールパネルで「Windowsの機能の有効化または無効化」を表示する。
    4. 「Hype-V」と「Windows Subsystem for Linux」または「Linux用Windowsサブシステム」のチェックボックスを「オン」にし、PCを再起動する
    ※Windowwsのバージョンによって項目名が異なります  
-   ![WSLpreSetting](./media/img/image.png)
+   ![WSLpreSetting](./media/img/WSLpreSetting.png)
 2. Ubuntu install
    1. Microsoft StoreでUbuntuと検索する
    2. 最新LSTバージョンのイメージをインストールする  
-   ![UbuntuStore](./media/img/image-1.png)
+   ![UbuntuStore](./media/img/UbuntuStore.png)
    3. インストール完了後に自動でUbuntuのターミナルが起動するため、手順にユーザー名とパスワードを設定する
       1. ユーザー名はUbuntu内でつかう自身のユーザー名となる。パスワードはrootユーザーになる際に利用する（紛失しないこと）
 3. Ubuntuを最新化
@@ -44,7 +44,7 @@ WSL、Docker、Visual Studio Codeのインストーラーは自社指定のも�
    2. インストーラーを実行する
 2. DockerをWSL(Ubuntu)にアタッチ
    1. Resources>WSL integration からDockerを利用したいUbuntuを選択する  
-   ![DockerSetting](./media/img/image-2.png)
+   ![DockerSetting](./media/img/DockerSetting.png)
 
 ### Visual Studio Code
 
