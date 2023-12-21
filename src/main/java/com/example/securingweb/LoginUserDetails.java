@@ -1,25 +1,53 @@
 package com.example.securingweb;
 
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import com.example.tweet.entities.LoginUser;
 
-public class LoginUserDetails {
+public class LoginUserDetails implements UserDetails {
 
     private final LoginUser loginUser;
 
-    public LoginUserDetails(LoginUser loginUser){
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    public LoginUserDetails(LoginUser loginUser) {
         this.loginUser = loginUser;
     }
 
-    public String getEmail() {
-        return loginUser.email();
+    @Override
+    public String getUsername() {
+        return loginUser.getEmail();
     }
 
-    public String getName() {
-        return loginUser.name();
+    @Override
+    public String getPassword() {
+        return loginUser.getPassword();
     }
 
-    public String getPassWord() {
-        return loginUser.password();
-    }
+    @Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
 
 }
