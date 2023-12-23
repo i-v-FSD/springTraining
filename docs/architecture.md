@@ -37,31 +37,31 @@ MySQLのバージョンを上げても問題ない想定ですが、上手くい
 - tweet/mysql/init/create_db.sql
   - テーブル定義などを記載
 
-|||
-|--|--|
-|使用製品|MySQL5.7|
-|データベース名|twitter|
-|テーブル|tweet<br>user|
+| | |
+| -- | -- |
+| 使用製品 | MySQL5.7 |
+| データベース名 | twitter |
+| テーブル | tweet<br>user |
 
 ### テーブル定義
 
 #### tweetテーブル
 
-|物理名|data type|NOT NULL|Other specifications|uniq|外部キー|
-|---|---|---|---|---|---|
-|id|MEDIUMINT|yes|AUTO_INCREMENT|yes||
-|user_id|INT|yes|||user(id)|
-|content|VARCHAR(140)|yes||||
-|created_at|TIMESTAMP||CURRENT_TIMESTAMP|||
-|updated_at|TIMESTAMP||CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP|||
+| 物理名 | data type | NOT NULL | Other specifications | uniq | 外部キー |
+| --- | --- | --- | --- | --- | --- |
+| id | MEDIUMINT UNSIGNED | yes | AUTO_INCREMENT | yes | |
+| user_id | MEDIUMINT UNSIGNED | yes | | | user(id) |
+| content | VARCHAR(140) | yes | | | |
+| created_at | TIMESTAMP | | CURRENT_TIMESTAMP | | |
+| updated_at | TIMESTAMP | | CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP | | |
 
 #### userテーブル
 
-|物理名|data type|NOT NULL|Other specifications|uniq|外部キー|
-|---|---|---|---|---|---|
-|id|MEDIUMINT|yes|AUTO_INCREMENT|yes||
-|name|VARCHAR(255)|yes||||
-|email|VARCHAR(255)|yes||yes||
-|password|VARCHAR(300)|yes||||
-|created_at|TIMESTAMP||CURRENT_TIMESTAMP|||
-|updated_at|TIMESTAMP||CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP|||
+| 物理名 | data type | NOT NULL | Other specifications | uniq | 外部キー |
+| --- | --- | --- | --- | --- | --- |
+| id | MEDIUMINT UNSIGNED | yes | AUTO_INCREMENT | yes | |
+| name | VARCHAR(255) | yes | | | |
+| email | VARCHAR(255) | yes | | yes | |
+| password | VARCHAR(300) | yes | | | |
+| created_at | TIMESTAMP | | CURRENT_TIMESTAMP | | |
+| updated_at | TIMESTAMP | | CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP | | |
