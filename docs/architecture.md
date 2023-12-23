@@ -49,8 +49,8 @@ MySQLのバージョンを上げても問題ない想定ですが、上手くい
 
 |物理名|data type|NOT NULL|Other specifications|uniq|外部キー|
 |---|---|---|---|---|---|
-|id|MEDIUMINT|yes|AUTO_INCREMENT|yes||
-|user_id|INT|yes|||user(id)|
+|id|MEDIUMINT UNSIGNED|yes|AUTO_INCREMENT|yes||
+|user_id|MEDIUMINT UNSIGNED|yes|||user(id)|
 |content|VARCHAR(140)|yes||||
 |created_at|TIMESTAMP||CURRENT_TIMESTAMP|||
 |updated_at|TIMESTAMP||CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP|||
@@ -59,7 +59,7 @@ MySQLのバージョンを上げても問題ない想定ですが、上手くい
 
 |物理名|data type|NOT NULL|Other specifications|uniq|外部キー|
 |---|---|---|---|---|---|
-|id|MEDIUMINT|yes|AUTO_INCREMENT|yes||
+|id|MEDIUMINT UNSIGNED|yes|AUTO_INCREMENT|yes||
 |name|VARCHAR(255)|yes||||
 |email|VARCHAR(255)|yes||yes||
 |password|VARCHAR(300)|yes||||
