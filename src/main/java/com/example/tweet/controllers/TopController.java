@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -17,6 +18,7 @@ import com.example.tweet.common.validation.TweetValidator;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.xml.bind.ValidationException;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class TopController {
@@ -28,12 +30,17 @@ public class TopController {
         return "redirect:/top";
     }
 
-    @GetMapping("top")
-    public String topTweetPageString(Model model) {
+    @GetMapping("/top")
+    public String topTweetPageString(
+            Model model,
+            @ModelAttribute("message") String message) {
         try {
             List<Tweet> tweetContent = tweetService.fetchTweetList();
             // 画面へ値を渡すため、ModelAndViewに値を詰める
             model.addAttribute("tweetList", tweetContent);
+            if (!message.isEmpty()) {
+                model.addAttribute("message", message);
+            }
             return "/top.html";
         } catch (DataAccessException ex) {
             model.addAttribute("message", "一覧取得時に異常が発生しました。");
@@ -87,9 +94,10 @@ public class TopController {
     }
 
     @GetMapping("/edit{id}")
-    public String showEditPage(HttpServletRequest request, Model model) {
-        int tweetId = Integer.parseInt(request.getParameter("id"));
-        // 編集ボタン押下されたTweetのIDを利用して削除
+    public String showEditPage(
+            @RequestParam("id") int tweetId,
+            Model model) {
+        // 編集ボタン押下されたTweetのIDを利用してTweet取得
         Tweet editTargetTweet = tweetService.selectTweetById(tweetId);
 
         model.addAttribute("tweet", editTargetTweet);
@@ -97,11 +105,11 @@ public class TopController {
     }
 
     @PostMapping("/edit")
-    public String editTweet(HttpServletRequest request, RedirectAttributes redirectAttributes) {
-        int tweetId = Integer.parseInt(request.getParameter("id"));
-        String content = (String) request.getParameter("content");
+    public String editTweet(
+            @RequestParam("id") int tweetId,
+            @RequestParam("content") String content,
+            RedirectAttributes redirectAttributes) {
         String updatedMessage = tweetService.updateTweetById(tweetId, content);
-
         redirectAttributes.addFlashAttribute("message", updatedMessage);
         return "redirect:/top";
     }
