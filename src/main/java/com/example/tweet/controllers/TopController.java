@@ -24,6 +24,11 @@ public class TopController {
     private TweetService tweetService;
 
     @GetMapping("/")
+    public String showInitialPage() {
+        return "redirect:/top";
+    }
+
+    @GetMapping("top")
     public String topTweetPageString(Model model) {
         try {
             List<Tweet> tweetContent = tweetService.fetchTweetList();
@@ -98,6 +103,6 @@ public class TopController {
         String updatedMessage = tweetService.updateTweetById(tweetId, content);
 
         redirectAttributes.addFlashAttribute("message", updatedMessage);
-        return "redirect:/";
+        return "redirect:/top";
     }
 }
