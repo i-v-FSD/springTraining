@@ -17,9 +17,14 @@ import jakarta.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/")
 public class TopController {
+
+    private final TweetService tweetService;
+
     @Autowired
-    private TweetService tweetService;
-    
+    public TopController(TweetService tweetService) {
+        this.tweetService = tweetService;
+    }
+
     @GetMapping
     public ModelAndView topTweetPage() {
         // 遷移先画面を設定
