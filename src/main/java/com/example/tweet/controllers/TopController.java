@@ -28,7 +28,7 @@ public class TopController {
     @GetMapping
     public ModelAndView topTweetPage() {
         // 遷移先画面を設定
-        ModelAndView model = new ModelAndView("/top.html");
+        ModelAndView model = new ModelAndView("top");
 
         List<Tweet> tweetContent = tweetService.fetchTweetList();
         // 画面へ値を渡すため、ModelAndViewに値を詰める
