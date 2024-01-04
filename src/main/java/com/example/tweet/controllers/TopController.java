@@ -84,13 +84,13 @@ public class TopController {
     }
 
     @PostMapping("/delete")
-    public String deleteTweet(HttpServletRequest request, RedirectAttributes redirectAttributes) {
-        int id = Integer.parseInt(request.getParameter("id"));
+    public String deleteTweet(
+            @RequestParam("id") int tweetId,
+            RedirectAttributes redirectAttributes) {
         // 削除ボタン押下されたTweetのIDを利用して削除
-        int resultNum = tweetService.deleteTweet(id);
-        System.out.println(resultNum + "件のTweetを削除");
-
-        return "redirect:/";
+        String resultInfo = tweetService.deleteTweet(tweetId);
+        redirectAttributes.addFlashAttribute("message", resultInfo);
+        return "redirect:/top";
     }
 
     @GetMapping("/edit{id}")

@@ -27,9 +27,14 @@ public class TweetService {
     }
 
     // つぶやく削除時のSQL実行結果件数を返す
-    public int deleteTweet(int id) {
-        int resultNum = tweetDao.deleteOneTweet(id);
-        return resultNum;
+    public String deleteTweet(int id) {
+        int deleteResult = tweetDao.deleteOneTweet(id);
+        // 例外処理
+        if (deleteResult > 0) {
+            return "tweetを削除しました。";
+        } else {
+            return "tweetの削除に失敗しました。";
+        }
     }
 
     // つぶやく編集対象となるTweet1件の情報を返す
