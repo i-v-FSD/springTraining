@@ -20,14 +20,18 @@ import jakarta.xml.bind.ValidationException;
 
 @Controller
 public class TopController {
+
+    private final TweetService tweetService;
+
     @Autowired
-    private TweetService tweetService;
+    public TopController(TweetService tweetService) {
+        this.tweetService = tweetService;
+    }
 
     @GetMapping("/")
     public String topTweetPage(Model model) {
         try {
             List<Tweet> tweetContent = tweetService.fetchTweetList();
-            // 画面へ値を渡すため、ModelAndViewに値を詰める
             model.addAttribute("tweetList", tweetContent);
             return "/top.html";
         } catch (DataAccessException ex) {
