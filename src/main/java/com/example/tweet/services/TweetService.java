@@ -11,8 +11,12 @@ import com.example.tweet.entities.Tweet;
 
 @Service
 public class TweetService {
+    private final TweetDao tweetDao;
+
     @Autowired
-    private TweetDao tweetDao;
+    public TweetService(TweetDao tweetDao) {
+        this.tweetDao = tweetDao;
+    }
 
     // 動作確認としてDaoメソッドの戻り値を返すだけ
     public List<Tweet> fetchTweetList() {
