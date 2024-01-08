@@ -31,15 +31,10 @@ public class TopController {
             model.addAttribute("tweetList", tweetContent);
             return "/top.html";
         } catch (DataAccessException ex) {
-            model.addAttribute("message", "一覧取得時に異常が発生しました。");
-            System.out.println(ex.getCause());
-            System.out.println(ex.getMessage());
+            return handleException(model, "一覧取得時に異常が発生しました。", ex);
         } catch (Exception ex) {
-            model.addAttribute("message", "システムエラーが発生しました");
-            System.out.println(ex.getCause());
-            System.out.println(ex.getMessage());
+            return handleException(model, "システムエラーが発生しました", ex);
         }
-        return "/errors/errorPage.html";
     }
 
     @PostMapping("/insert")
@@ -99,5 +94,16 @@ public class TopController {
 
         redirectAttributes.addFlashAttribute("message", updatedMessage);
         return "redirect:/";
+    }
+
+    private String handleException(Model model, String errorMessage, Exception ex) {
+        model.addAttribute("message", errorMessage);
+        logExceptionDetails(ex);
+        return "/errors/errorPage.html";
+    }
+
+    private void logExceptionDetails(Exception ex) {
+        System.err.println("Exception cause: " + ex.getCause());
+        System.err.println("Exception message: " + ex.getMessage());
     }
 }
