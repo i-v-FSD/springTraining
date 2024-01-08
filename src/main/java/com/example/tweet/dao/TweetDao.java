@@ -1,9 +1,6 @@
 package com.example.tweet.dao;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -27,17 +24,13 @@ public class TweetDao {
     public List<Tweet> findAllTweet() {
         String sql = "SELECT * FROM tweet;";
         try {
-            List<Map<String, Object>> allTweetList = jdbc.queryForList(sql);
-
-            List<Tweet> tweetList = new ArrayList<>();
-            for (Map<String, Object> tweetInfo : allTweetList) {
+            return jdbc.query(sql, (resultSet, rowNum) -> {
                 Tweet tweet = new Tweet();
-                tweet.setId((int) tweetInfo.get("id"));
-                tweet.setUserId((int) tweetInfo.get("user_id"));
-                tweet.setContent((String) tweetInfo.get("content"));
-                tweetList.add(tweet);
-            }
-            return tweetList;
+                tweet.setId(resultSet.getInt("id"));
+                tweet.setUserId(resultSet.getInt("user_id"));
+                tweet.setContent(resultSet.getString("content"));
+                return tweet;
+            });
         } catch (DataAccessException ex) {
             System.out.println("[findAllTweet]occur error");
             throw ex;
