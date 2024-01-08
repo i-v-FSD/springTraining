@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.tweet.entities.Tweet;
@@ -19,6 +20,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.xml.bind.ValidationException;
 
 @Controller
+@RequestMapping("/")
 public class TopController {
 
     private final TweetService tweetService;
@@ -28,7 +30,7 @@ public class TopController {
         this.tweetService = tweetService;
     }
 
-    @GetMapping("/")
+    @GetMapping
     public String topTweetPage(Model model) {
         try {
             List<Tweet> tweetContent = tweetService.fetchTweetList();
