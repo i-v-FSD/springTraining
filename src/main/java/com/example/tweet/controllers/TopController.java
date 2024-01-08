@@ -35,7 +35,7 @@ public class TopController {
         try {
             List<Tweet> tweetContent = tweetService.fetchTweetList();
             model.addAttribute("tweetList", tweetContent);
-            return "/top.html";
+            return "top";
         } catch (DataAccessException ex) {
             return handleException(model, "一覧取得時に異常が発生しました。", ex);
         } catch (Exception ex) {
@@ -105,7 +105,7 @@ public class TopController {
     private String handleException(Model model, String errorMessage, Exception ex) {
         model.addAttribute("message", errorMessage);
         logExceptionDetails(ex);
-        return "/errors/errorPage.html";
+        return "errors/errorPage";
     }
 
     private void logExceptionDetails(Exception ex) {
