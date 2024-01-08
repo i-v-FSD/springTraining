@@ -20,8 +20,7 @@ public class TweetService {
 
     // 動作確認としてDaoメソッドの戻り値を返すだけ
     public List<Tweet> fetchTweetList() {
-        List<Tweet> allTweetList = tweetDao.findAllTweet();
-        return allTweetList;
+        return tweetDao.findAllTweet();
     }
 
     // つぶやく新規追加時のSQL実行結果件数を返す
