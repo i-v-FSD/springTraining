@@ -24,7 +24,7 @@ public class TopController {
     private TweetService tweetService;
 
     @GetMapping("/")
-    public String topTweetPageString(Model model) {
+    public String topTweetPage(Model model) {
         try {
             List<Tweet> tweetContent = tweetService.fetchTweetList();
             // 画面へ値を渡すため、ModelAndViewに値を詰める
