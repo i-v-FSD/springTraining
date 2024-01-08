@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.example.tweet.common.errors.NoExistRecordError;
 import com.example.tweet.entities.Tweet;
+import com.example.tweet.entities.User;
 
 @Repository
 public class TweetDao {
@@ -22,13 +23,20 @@ public class TweetDao {
 
     // tweet全件取得
     public List<Tweet> findAllTweet() {
-        String sql = "SELECT * FROM tweet;";
+        String sql = "SELECT * FROM tweet " +
+                "JOIN user ON tweet.user_id = user.id;";
         try {
             return jdbc.query(sql, (resultSet, rowNum) -> {
                 Tweet tweet = new Tweet();
                 tweet.setId(resultSet.getInt("id"));
                 tweet.setUserId(resultSet.getInt("user_id"));
                 tweet.setContent(resultSet.getString("content"));
+
+                User user = new User();
+                user.setName(resultSet.getString("name"));
+                user.setEmail(resultSet.getString("email"));
+                tweet.setUser(user);
+
                 return tweet;
             });
         } catch (DataAccessException ex) {

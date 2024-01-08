@@ -4,6 +4,15 @@ public class Tweet {
     private int id;
     private int userId;
     private String content;
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public int getId() {
         return id;
