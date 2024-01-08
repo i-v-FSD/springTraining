@@ -16,8 +16,12 @@ import com.example.tweet.entities.Tweet;
 
 @Repository
 public class TweetDao {
+    private final JdbcTemplate jdbc;
+
     @Autowired
-    private JdbcTemplate jdbc;
+    public TweetDao(JdbcTemplate jdbc) {
+        this.jdbc = jdbc;
+    }
 
     // tweet全件取得
     public List<Tweet> findAllTweet() {
